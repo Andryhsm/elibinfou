@@ -167,8 +167,9 @@ include_once "./lib-php/cnx.php";
                                                 <td width='45%'>
                                                     <?php echo "<h4><b>" . $data['nomP'] . " " . $data['prenomP'] . "</b></h4>"; ?>
     <?php echo($data['telP']); ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo($data['emailP']); ?><br>
+                                                    <b>Adresse :</b> <?php echo($data['adresseP']); ?> <br>
                                                     <b>Type de soin:</b> <?php echo($data['typeSoinP']); ?> <br>
-                                                    <b>Type de soin:</b> <?php echo($data['date_soin']); ?> <br>
+                                                    <b>Date de soin:</b> <?php echo($data['date_soin']); ?> <br>
                                                     <b>Heure de soin:</b> <?php echo($heure); ?> <br>
                                                     <b>Fréquence de soin:</b> <?php echo($data['frequenceSoin']); ?>
                                                 </td>

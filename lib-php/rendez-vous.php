@@ -18,6 +18,7 @@
 
 	$query = $bdd->query("SELECT * FROM oulib_liste_demande WHERE emailP=\"".$emailP."\" AND emailI=\"".$emailI."\"");
 
+
 	if($query->rowCount() == 0){
 
 			
@@ -35,8 +36,16 @@
 			$frequenceSoin2 = $_SESSION["frequence-soin2"];
 			$frequenceSoin3 = $_SESSION["frequence-soin3"];
 			$frequenceSoin4 = $_SESSION["frequence-soin4"];
+			
 			$photo = $_SESSION["photo"];
-	
+
+			$codeAccess = $_SESSION["code-acces"];
+			$etage = $_SESSION["etage"];
+			$infoSup = $_SESSION["info-sup"];
+
+
+			$adresse = $rueP. ", ".$codePostalP. ", ".$villeP;
+
 
 			$status = "attente";
 
@@ -56,7 +65,7 @@
 				$frequenceSoinP = $frequenceSoin1. " - ". $frequenceSoin2 . " - ". $frequenceSoin3 ." - ". $frequenceSoin4;
 
 			$date = "heure";
-			$q = "INSERT INTO `oulib_liste_demande` (`photo`, `emailI`, `nomP`, `prenomP`, `telP`, `typeSoinP`, `commentaire`, `frequenceSoin`, `status`, `emailP`, `date_soin`, `heure_soin`) VALUES('$photo', '$emailI', '$nomP', '$prenomP', '$telP', '$typeSoinP', '$commentaire', '$frequenceSoinP', '$status', '$emailP', '$date_soin', '$heure_soin')";
+			$q = "INSERT INTO `oulib_liste_demande` (`photo`, `emailI`, `nomP`, `prenomP`, `telP`, `adresseP`, `typeSoinP`, `commentaire`, `frequenceSoin`, `status`, `emailP`, `date_soin`, `heure_soin`) VALUES('$photo', '$emailI', '$nomP', '$prenomP', '$telP' , '$adresse',  '$typeSoinP', '$commentaire', '$frequenceSoinP', '$status', '$emailP', '$date_soin', '$heure_soin')";
 
 			//echo $q;
 
