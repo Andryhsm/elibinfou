@@ -231,22 +231,22 @@ $data = $req->fetch();
                                                                 <div class="">
                                                                     <?php if ($data['type-soinP1'] != "") { ?>
                                                                         <p>
-                                                                            <b><?php echo($data['type-soinP1']); ?></b> : <?php echo($data['frequence-soin1']) ?> fois par jour
+                                                                            <b><?php echo(utf8_encode($data['type-soinP1'])); ?></b> : <?php echo($data['frequence-soin1']) ?> fois par jour
                                                                         </p>
                                                                     <?php } ?>
                                                                     <?php if ($data['type-soinP2'] != "") { ?>
                                                                         <p>
-                                                                            <b><?php echo($data['type-soinP2']); ?></b> : <?php echo($data['frequence-soin2']) ?> fois par jour
+                                                                            <b><?php echo(utf8_encode($data['type-soinP2'])); ?></b> : <?php echo($data['frequence-soin2']) ?> fois par jour
                                                                         </p>
                                                                     <?php } ?>
                                                                     <?php if ($data['type-soinP3'] != "") { ?>
                                                                         <p>
-                                                                            <b><?php echo($data['type-soinP3']); ?></b> : <?php echo($data['frequence-soin3']) ?> fois par jour
+                                                                            <b><?php echo(utf8_encode($data['type-soinP3'])); ?></b> : <?php echo($data['frequence-soin3']) ?> fois par jour
                                                                         </p>
                                                                     <?php } ?>
                                                                     <?php if ($data['type-soinP4'] != "") { ?>
                                                                         <p>
-                                                                            <b><?php echo($data['type-soinP4']); ?></b> : <u><?php echo($data['frequence-soin4']) ?> fois par jour
+                                                                            <b><?php echo(utf8_encode($data['type-soinP4'])); ?></b> : <u><?php echo($data['frequence-soin4']) ?> fois par jour
                                                                             </p>
                                                                         <?php } ?>
                                                                 </div>
