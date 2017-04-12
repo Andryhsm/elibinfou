@@ -54,6 +54,7 @@
                         <td width='45%'>
                             <h4><b> {$data['nomP']} {$data['prenomP']}</b></h4>
                             {$data['telP']}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {$data['emailP']}<br>
+                            <b>Adresse :</b> {$data['adresseP']}<br>
                             <b>Type de soin:</b> {$data['typeSoinP']}<br>
                             <b>Date de soin:</b> {$data['date_soin']}<br>
                             <b>Heure de soin:</b> {$heure}<br>

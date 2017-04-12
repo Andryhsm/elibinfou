@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  127.0.0.1
--- Généré le :  Mer 05 Avril 2017 à 14:28
+-- Généré le :  Mer 12 Avril 2017 à 11:21
 -- Version du serveur :  10.1.21-MariaDB
 -- Version de PHP :  5.6.30
 
@@ -23,7 +23,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Structure de la table `patient`
+-- Structure de la table `oulib_patient`
 --
 
 CREATE TABLE `oulib_patient` (
@@ -55,11 +55,11 @@ CREATE TABLE `oulib_patient` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Contenu de la table `patient`
+-- Contenu de la table `oulib_patient`
 --
 
 INSERT INTO `oulib_patient` (`id`, `photo`, `nomP`, `prenomP`, `emailP`, `mdpP`, `telP`, `rueP`, `code-postalP`, `villeP`, `code-acces`, `etage`, `info-sup`, `type-soinP1`, `type-soinP2`, `type-soinP3`, `type-soinP4`, `frequence-soin1`, `frequence-soin2`, `frequence-soin3`, `frequence-soin4`, `heure1`, `heure2`, `heure3`, `heure4`) VALUES
-(4, 'Photo-de-moi-1.png', 'stian', 'andry', 'rt@gmail.com', '1', 346448609, 'Mahazoarivo', 110, 'Antsirabe', '753', '2Ã¨me', '110', 'Perfusion', 'Cicatrisation', '', '', '1', '1', '', '', '12h', '42h', '', ''),
+(4, 'Photo-de-moi-1.png', 'stian', 'andry', 'rt@gmail.com', '1', 346448609, 'Mahazoarivo', 110, 'Antsirabe', '753', '2Ã¨me', '110', 'Perfusion', 'Cicatrisation', '', '', '4', '1', '', '', '12h', '42h', '', ''),
 (7, '52813654-personnage-de-dessin-anim-homme-d-affaire', 'NDREMA', 'koto', 'koto@gmail.com', 'k', 34343434, 'antsirabe', 110, 'Ambatolahy', '09090', 'Ã 900', 'aucun info sup', 'Cicatrisation', '', '', '', '2', '2', '', '', '', '', '', ''),
 (6, 'avatar_patient.png', 'Stian', 'Andrinirina', 'stian@gmail.com', 's', 1, '1', 1, '1', '1', '1', '1', 'Cicatrisation', 'StomarhÃ©rapie', 'Perfusion', 'Sondage', '1', '1', '1', '1', '1', '1', '1', '1');
 
@@ -68,7 +68,7 @@ INSERT INTO `oulib_patient` (`id`, `photo`, `nomP`, `prenomP`, `emailP`, `mdpP`,
 --
 
 --
--- Index pour la table `patient`
+-- Index pour la table `oulib_patient`
 --
 ALTER TABLE `oulib_patient`
   ADD PRIMARY KEY (`id`),
@@ -79,7 +79,7 @@ ALTER TABLE `oulib_patient`
 --
 
 --
--- AUTO_INCREMENT pour la table `patient`
+-- AUTO_INCREMENT pour la table `oulib_patient`
 --
 ALTER TABLE `oulib_patient`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
