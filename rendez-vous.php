@@ -151,8 +151,8 @@ include_once "./lib-php/cnx.php";
                                 $b = FALSE;
 
                                 while ($data = $req->fetch()) {
-                                    $heures = explode(':', $data['heure_soin']);
-                                    $heure = $heures[0] . ":" . $heures[1];
+//                                    $heures = explode(':', $data['heure_soin']);
+//                                    $heure = $heures[0] . ":" . $heures[1];
                                     ?>
 
                                     <table class="table table-hover">
@@ -170,7 +170,7 @@ include_once "./lib-php/cnx.php";
                                                     <b>Adresse :</b> <?php echo($data['adresseP']); ?> <br>
                                                     <b>Type de soin:</b> <?php echo($data['typeSoinP']); ?> <br>
                                                     <b>Date de soin:</b> <?php echo($data['date_soin']); ?> <br>
-                                                    <b>Heure de soin:</b> <?php echo($heure); ?> <br>
+                                                    <b>Heure de soin:</b> <?php echo($data['heure_soin']); ?> <br>
                                                     <b>Fréquence de soin:</b> <?php echo($data['frequenceSoin']); ?>
                                                 </td>
                                                 <td width='40%'>
