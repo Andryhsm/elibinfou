@@ -28,28 +28,15 @@ if ((!isset($_SESSION['email'])) || (empty($_SESSION['email']))) {
         <link rel="stylesheet" type="text/css" href="bootstrap/css/bootsrap.min.css">
         <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap-theme.miin.css">
         <link rel="stylesheet" type="text/css" href="bootstrap/css/paper.css">
-        <link rel="stylesheet" type="text/css" href="js/datepicker/css/datepicker.css">
+        <!--<link rel="stylesheet" type="text/css" href="js/datepicker/css/datepicker.css">-->
+        <link rel="stylesheet" type="text/css" href="bootstrap-datepicker-1.6.4/css/bootstrap-datepicker3.min.css">
+        <link rel="stylesheet" type="text/css" href="bootstrap-datepicker-1.6.4/css/bootstrap-datetimepicker.min.css">
 
-        <script type="text/javascript" src="./others/jquery.js.téléchargement"></script>
-
-        <script type="text/javascript">
-            /* <![CDATA[ */
-            var object = {"ajaxurl": "http:\/\/localhost\/wordpress\/wp-admin\/admin-ajax.php"};
-            /* ]]> */
-        </script>
+        <!--<script type="text/javascript" src="./others/jquery.js.téléchargement"></script>-->
 
         <script src="js/jssor.slider-22.2.10.min.js" type="text/javascript"></script>
 
 
-        <!-- Meta OG tags by Kiwi Social Sharing Plugin -->
-        <meta property="og:type" content="article"> 
-        <meta property="og:title" content="Alchem">
-        <meta property="og:image" content="http://localhost/wordpress/wp-content/plugins/kiwi-social-share/admin/images/placeholder-image.png">
-        <meta property="og:url" content="http://localhost/wordpress/">
-        <meta property="og:site_name" content="">
-        <meta property="article:published_time" content="2017-02-28T18:11:19+00:00">
-        <meta property="article:modified_time" content="2017-02-28T18:11:19+00:00">
-        <meta property="og:updated_time" content="2017-02-28T18:11:19+00:00">
         <!--/end meta tags by Kiwi Social Sharing Plugin --><style id="cw_css">#about {
                 margin-top:14rem!important
             }
@@ -174,7 +161,7 @@ if ((!isset($_SESSION['email'])) || (empty($_SESSION['email']))) {
                 color: white;
             }
             .info {
-               background: #f3f8f7;
+                background: #f3f8f7;
             }
             #nomInfirmier {
                 font-size: 2.2em;
@@ -209,51 +196,146 @@ if ((!isset($_SESSION['email'])) || (empty($_SESSION['email']))) {
         <div class="wrapper ">
             <nav class="navbar navbar-default navbar-fixed-top">
                 <div class="container-fluid">
-                  <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                      <span class="sr-only">Toggle navigation</span>
-                      <span class="icon-bar"></span>
-                      <span class="icon-bar"></span>
-                      <span class="icon-bar"></span>
-                    </button>
-                      <div class="logo">
-                          <a href="#"><img src="img/logo.png"></a>
-                      </div>
-                  </div>
-          
-                  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav navbar-right">
-                      <li><a href="./carte.php">Carte</a></li>
-                      <li><a href="./notification.php"><span id="badges">Notification</span></a></li>
-                      <li><a href="lib-php/modifierprofil.php">Modifier mon profil</a></li>
-                      <li><a href="./contact1.php">Contact</a></li>
-                      <li><a href="lib-php/deconnexion.php">Deconnexion</a></li>
-                    </ul>
-                  </div>
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <div class="logo">
+                            <a href="#"><img src="img/logo.png"></a>
+                        </div>
+                    </div>
+
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="./carte.php">Carte</a></li>
+                            <li><a href="./notification.php"><span id="badges">Notification</span></a></li>
+                            <li><a href="lib-php/modifierprofil.php">Modifier mon profil</a></li>
+                            <li><a href="./contact1.php">Contact</a></li>
+                            <li><a href="lib-php/deconnexion.php">Deconnexion</a></li>
+                        </ul>
+                    </div>
                 </div>
             </nav>     
 
 
 
             <div id="alchem-home-sections">
-                <!-- Un test de modal dialogue -->
+                <!-- modal dialogue pour les infirmiers libre -->
                 <a class="btn btn-primary hidden" data-toggle="modal" id="triggerwarningI" href='#modal-id'>Trigger modal</a>
                 <div class="modal fade" id="modal-id">
+                    <div class="modal-dialog" style="margin:0%; height: 100vh;">
+                        <div class="modal-content">
+                            <form method="POST" action="" id="form-filter" class="form-horizontal" enctype="multipart/form-data">
+                                <div class="modal-header-infirmier">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    <h4 class="modal-title modal-title-infirmier">INFIRMIERE LIBERALE</h4>
+                                </div>
+                                <div class="modal-body" >
+                                    <div class="warning" id="infoI">
+                                        <div class="row">
+                                            <div class="col-lg-8">
+                                                <h4><label id="nomIprenom"></label></h4>
+
+                                                Téléphone: <label id="telI"></label>
+                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                Email: <label id="emailI"></label>
+                                                <br>
+                                                Adresse: <label id="adresseI"></label>
+                                                <br>
+                                                Type de soin: <label id="typesoinI"></label>
+                                                <br>
+                                                Lieu d'intervention: <label id="lieuI"></label>
+                                                <input class="form-control" type="hidden" id="emailI1" value="">
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <img src="" class="img-rounded" id="imageI">
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="jumbotron">
+                                            <div class="form-group">
+                                                <label for="date" class="col-sm-3 control-label">Date du soin *:</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" placeholder="Date du soin" required class="form-control date datepicker" name="date_soin" id="date_soin">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="heure" class="col-sm-3 control-label">Heure de soin *:</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" placeholder="Heure de soin" required class="form-control date datetimepicker" name="heure_soin" id="heure_soin">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="heure" class="col-sm-3 control-label">Description *:</label>
+                                                <div class="col-sm-8">
+                                                    <textarea placeholder="Decriver votre demande ici!" rows="4" required class="form-control" name="commentaire" id="commentaire"></textarea>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>    
+                                </div>
+                                <div class="modal-footer">
+                                    <input type='button' class='btn btn-lg btn-primary col-lg-12' name='rdv' onclick='rendezVous();' value='Prendre rendez-vous' />
+
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <a class="btn btn-primary hidden" data-toggle="modal" id="triggerwarningI2" href='#modal-id1'>Trigger modal</a>
+                <div class="modal fade" id="modal-id1">
                     <div class="modal-dialog" style="margin:0%; height: 100vh;">
                         <div class="modal-content">
                             <div class="modal-header-infirmier">
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                 <h4 class="modal-title modal-title-infirmier">INFIRMIERE LIBERALE</h4>
                             </div>
-                            <div class="modal-body modal-body-infirmier" >
-                                <div class="warning" id="infoI"></div>    
+                            <div class="modal-body" >
+                                <div class="warning1" id="infoI1">
+
+                                    <form method="POST" action="" id="form-filter" class="form-horizontal" enctype="multipart/form-data">
+                                        <div class="row">
+                                            <div class="col-lg-8">
+                                                <h4><label id="nomIprenom1"></label></h4>
+
+                                                Téléphone: <label id="telI1"></label>
+                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                Email: <label id="emailI1"></label>
+                                                <br>
+                                                Adresse: <label id="adresseI1"></label>
+                                                <br>
+                                                Type de soin: <label id="typesoinI1"></label>
+                                                <br>
+                                                Lieu d'intervention: <label id="lieuI1"></label>
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <img src="" class="img-rounded" id="imageI1">
+                                            </div>
+                                        </div>
+                                        <br>
+
+                                    </form>
+
+                                </div>    
                             </div>
                             <div class="modal-footer">
+                                <div class="label-warning col-lg-12">
+
+                                    <center> <h4 style="color: white;">Demande déja envoyer!</h4> </center> 
+
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
 
                 <!-- Modal -->
                 <a class="btn btn-primary hidden" id="triggerwarning" data-toggle="modal" href='#warning'>Trigger modal</a>
@@ -275,12 +357,14 @@ if ((!isset($_SESSION['email'])) || (empty($_SESSION['email']))) {
                 </div>
 
 
+
                 <section class="section magee-section alchem-home-section-4 alchem-home-style-0" id="section-5" style="padding:0%;">
                     <input id="pac-input" class="controls" type="text" placeholder="Entrer adresse, lieu, Ville">
                     <div id="type-selector" class="controls">  
                         <label>Ici pour chercher un lieu</label>
-
                     </div>
+
+
                     <div id="map"></div>
 
                 </section>
@@ -296,31 +380,56 @@ if ((!isset($_SESSION['email'])) || (empty($_SESSION['email']))) {
             <footer class="">
                 <div class="footer-info-area">
                     <div class="container text-center alchem_footer_social_icon_1">
+                        <!--<input type="text" class="form-control date datepicker">-->
                         <div class="site-info">
                             <a href="#" >OUSOFT SAS</a>. 38 Rue de la convention, 94270, Le Kremlin-Bicêtre.</div>
-                            <input type="hidden" id="emailP" value="<?php echo($_SESSION['email']);?>">
+                        <input type="hidden" id="emailP" value="<?php echo($_SESSION['email']); ?>">
                     </div>
                 </div>          
             </footer>
         </div>  
 
 
-
-
         <script type="text/javascript" src="bootstrap/js/jquery.js"></script>
-        <script type="text/javascript" src="js/datepicker/js/bootstrap-datepicker.js"></script>
+        <!--<script type="text/javascript" src="bootstrap/js/jquery-1.8.3.min.js"></script>-->
+        <!--<script type="text/javascript" src="js/datepicker/js/bootstrap-datepicker.js"></script>-->
+        <script src="bootstrap-datepicker-1.6.4/js/bootstrap-datepicker.min.js"></script>
+        <script src="bootstrap-datepicker-1.6.4/js/bootstrap-datetimepicker.js"></script>
+        <script src="bootstrap-datepicker-1.6.4/locales/bootstrap-datepicker.fr.min.js"></script>
+        <script src="bootstrap-datepicker-1.6.4/locales/bootstrap-datetimepicker.fr.js" charset="UTF-8"></script>
         <script type="text/javascript" src="./others/owl.carousel.min.js.téléchargement"></script>
         <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
-        <script type="text/javascript">
-            /* <![CDATA[ */
-            var alchem_params = {"ajaxurl": "http:\/\/localhost\/wordpress\/wp-admin\/admin-ajax.php", "themeurl": "http:\/\/localhost\/wordpress\/wp-content\/themes\/alchem", "responsive": "yes", "site_width": "1170px", "sticky_header": "yes", "show_search_icon": "yes", "slider_autoplay": "yes", "slideshow_speed": "3000", "portfolio_grid_pagination_type": "pagination", "blog_pagination_type": "pagination", "global_color": "#fdd200", "admin_ajax_nonce": "2ed3a22947", "admin_ajax": "http:\/\/localhost\/wordpress\/wp-admin\/admin-ajax.php", "isMobile": "0", "footer_sticky": "0"};
-            /* ]]> */
-        </script>
+
         <script type="text/javascript" src="./others/main.js.téléchargement"></script>
 
         <script src="http://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyAFYS6_tY3pkUEhb3cSkRUqiifSbTGOFa4&callback=initMap" async defer></script>
 
-
+        <script>
+                                        $(document).ready(function () {
+                                            $('.datepicker').datepicker({
+                                                language: 'fr',
+//                    showAnim : 'fadeIn',
+                                                autoclose: true,
+//                    pickerPosition: "bottom-left",
+                                                format: "dd-mm-yyyy",
+                                                todayHighlight: true,
+//                    orientation: "auto",
+//                    todayBtn: true
+                                            });
+                                        });
+                                        $('.datetimepicker').datetimepicker({
+                                            language: 'fr',
+                                            weekStart: 1,
+                                            todayBtn: 1,
+                                            format: "hh:ii",
+                                            autoclose: 1,
+                                            todayHighlight: 1,
+                                            startView: 1,
+                                            minView: 0,
+                                            maxView: 1,
+                                            forceParse: 0
+                                        });
+        </script>
 
         <script type="text/javascript">
             var map;
@@ -374,6 +483,10 @@ if ((!isset($_SESSION['email'])) || (empty($_SESSION['email']))) {
                         });
 
                         infoW.open(map, marker);
+
+//                        google.maps.event.addListener(infoW, 'domready', function () {
+//                            $('.datepicker').datepicker();
+//                        });
 
                         marker.setIcon("http://maps.google.com/mapfiles/ms/icons/blue-dot.png");
                         map.setCenter(pos);
@@ -468,24 +581,35 @@ if ((!isset($_SESSION['email'])) || (empty($_SESSION['email']))) {
             }
 
 
-            jQuery(document).ready(function ($) {
-               
-            });
-            function rendezVous(emailI) {
-                var commentaire = encodeURIComponent($("#commentaire").val());
-                var heure_soin = encodeURIComponent($("#heure_soin").val());
-                var date_soin = encodeURIComponent($("#date_soin").val());
+
+            function rendezVous() {
+
+//                alert ($( "#emailI1" ).val());
+
+                var emailI = $("#emailI1").val();
+                var commentaire = $("#commentaire").val();
+                var heure_soin = $("#heure_soin").val();
+                var date_soin = $("#date_soin").val();
+
+//                alert (emailI +" ---- "+commentaire+" ---- "+heure_soin+" --- "+date_soin);
+
+                var dataString = "emailI=" + emailI + "&commentaire=" + commentaire + "&heure_soin=" + heure_soin + "&date_soin=" + date_soin;
+
+//                alert (dataString);
                 $.ajax({
-                    url: 'lib-php/rendez-vous.php?emailI='+emailI+'&date_soin='+date_soin+'&heure_soin='+heure_soin+'&commentaire='+commentaire,  
-                    type: 'GET',
+                    type: 'POST', // define the type of HTTP verb we want to use (POST for our form)
+                    url: 'lib-php/rendez-vous.php', // the url where we want to POST
+                    data: dataString, // our data object
+                    dataType: 'text',
                     success: function (data) {
                         if (data === "reussi") {
+                            $('#modal-id').modal('hide');
                             $('#info').html('<p> Votre demande est bien envoyer . </p>');
                             $('#triggerwarning').trigger('click');
                             setTimeout(function () {
                                 $('#ferme').trigger('click');
                             }, 40000);
-                    } else if (data === "existe") {
+                        } else if (data === "existe") {
                             var nom = $('#nomInfirmier').html();
 
                             $('#info').html('<p> Votre demande à <strong>' + nom + '</strong> est dejà envoyer !</p>');
@@ -493,8 +617,16 @@ if ((!isset($_SESSION['email'])) || (empty($_SESSION['email']))) {
                             setTimeout(function () {
                                 $('#ferme').trigger('click');
                             }, 40000);
+                        } else if (data === "errore") {
+                            var nom = $('#nomInfirmier').html();
+
+                            $('#info').html('<p> Les champs marquées * sont obligatoires!</p>');
+                            $('#triggerwarning').trigger('click');
+                            setTimeout(function () {
+                                $('#ferme').trigger('click');
+                            }, 40000);
                         } else {
-                            alert("Une erreur de requete dans rendez-vous.php");
+                            alert(data);
                         }
                     },
                     error: function () {
@@ -508,7 +640,7 @@ if ((!isset($_SESSION['email'])) || (empty($_SESSION['email']))) {
             }
 
             //Geocodage des adresses
-            
+
             function geocodeAddress(resultsMap, address) {
                 var geocoder = new google.maps.Geocoder();
                 geocoder.geocode({'address': address}, function (results, status) {
@@ -536,7 +668,7 @@ if ((!isset($_SESSION['email'])) || (empty($_SESSION['email']))) {
             }
 
 
-            function afficher_marqueur(Smap, infirmier, pos) {
+            function afficher_marqueur(map, infirmier, pos) {
                 var marqueur = new google.maps.Marker({
                     map: map,
                     position: pos,
@@ -544,80 +676,98 @@ if ((!isset($_SESSION['email'])) || (empty($_SESSION['email']))) {
                     id: infirmier.id
                 });
 
-                var p = "<div class='col-lg-12 info'>";
-                p += "<div class='row'>";
-                p += "<div class='col-xs-6 col-lg-6 col-sm-6'><h4 id='nomInfirmier'>" + infirmier.prenomI + " " + infirmier.nomI + "</h4></center></div>";
-                p += "<div id='img-infirmier' class='col-xs-3 col-lg-3 col-sm-3'>";
-                p += "<img src='./image-person/" + infirmier.photo + "' style='width:60%;'/>";
-                p += "</div>";
-                p += "</div>";
-                p += "<div class='col-lg-8'>";
-                p += "<p><strong>Téléphone : </strong>" + infirmier.telI + "</p>";
-                p += "<p><strong>Email : </strong>" + infirmier.emailI + "</p>";
-                p += "<p><strong>Adresse : </strong>" + infirmier.rueI + " - " + infirmier.code_postalI + " - " + infirmier.villeI + "</p>";
-                p += "<p><strong>Type de soin : </strong> " + infirmier.type_soinI1 + " - " + infirmier.type_soinI2 + " - " + infirmier.type_soinI3 + " - " + infirmier.type_soinI4 + "</p>";
-                p += "<p><strong>Lieu d'intervention : " + infirmier.lieu_intervention + "</strong></p>";
-                p += "<div id='input_date'>";
-                p += "</div>";
-                p += "<div>";
-                p += "<p><label for='date_soin'>Date de soin : </label>";
-                p += "<input class='form-control col-lg-2' id='date_soin' name='date_soin' type='datep' placeholder='12-12-2012'></input></p>";
-                p += "<p><label for='heure_soin'>Heure de soin : </label>";
-                p += "<div class='input-group'>";
-                p += "  <input class='form-control col-lg-2' id='heure_soin' name='heure_soin' type='time' placeholder='12'></input></p>";
-                p += "  <span class='input-group-addon'>h</span>";
-                p += "</div>";
-                p += "</div>";
-                p += "<div class='col-lg-12'>";
-                p += "<center></br></br><textarea class='form-control' placeholder='Decriver votre demande içi' name='commentaire' id='commentaire' type='text'></textarea><br>";
-                p += "<input type='submit' class='btn btn-primary' name='rdv' onclick='rendezVous(\"" + infirmier.emailI + "\");' value='Prendre rendez-vous' /></center>";
-                p += "</div>";
-                p += "</div>";
+//                var p = "<div class='col-lg-12 info'>";
+//                p += "<div class='row'>";
+//                p += "<div class='col-xs-6 col-lg-6 col-sm-6'><h4 id='nomInfirmier'>" + infirmier.prenomI + " " + infirmier.nomI + "</h4></center></div>";
+//                p += "<div id='img-infirmier' class='col-xs-3 col-lg-3 col-sm-3'>";
+//                p += "<img src='./image-person/" + infirmier.photo + "' style='width:60%;'/>";
+//                p += "</div>";
+//                p += "</div>";
+//                p += "<div class='col-lg-8'>";
+//                p += "<p><strong>Téléphone : </strong>" + infirmier.telI + "</p>";
+//                p += "<p><strong>Email : </strong>" + infirmier.emailI + "</p>";
+//                p += "<p><strong>Adresse : </strong>" + infirmier.rueI + " - " + infirmier.code_postalI + " - " + infirmier.villeI + "</p>";
+//                p += "<p><strong>Type de soin : </strong> " + infirmier.type_soinI1 + " - " + infirmier.type_soinI2 + " - " + infirmier.type_soinI3 + " - " + infirmier.type_soinI4 + "</p>";
+//                p += "<p><strong>Lieu d'intervention : " + infirmier.lieu_intervention + "</strong></p>";
+//                p += "<div id='input_date'>";
+//                p += "</div>";
+//                p += "<div>";
+//                p += "<p><label for='date_soin'>Date de soin : </label>";
+//                p += "<input class='form-control col-lg-2 datepicker' id='date_soin' name='date_soin' type='datep' placeholder='31-12-2017'></input></p>";
+//                p += "<p><label for='heure_soin'>Heure de soin : </label>";
+//                p += "<div class='input-group'>";
+//                p += "  <input class='form-control col-lg-2' id='heure_soin' name='heure_soin' type='time' placeholder='24'></input></p>";
+//                p += "  <span class='input-group-addon'>h</span>";
+//                p += "</div>";
+//                p += "</div>";
+//                p += "<div class='col-lg-12'>";
+//                p += "<center></br></br><textarea class='form-control' placeholder='Decriver votre demande içi' name='commentaire' id='commentaire' type='text'></textarea><br>";
+//                p += "<input type='submit' class='btn btn-primary' name='rdv' onclick='rendezVous(\"" + infirmier.emailI + "\");' value='Prendre rendez-vous' /></center>";
+//                p += "</div>";
+//                p += "</div>";
 
 
-                var p2 = "<div class='col-lg-12 info'>";
-                p2 += "<div class='row'>";
-                p2 += "<div class='col-xs-6 col-lg-6 col-sm-6'><h4 id='nomInfirmier'>" + infirmier.prenomI + " " + infirmier.nomI + "</h4></center></div>";
-                p2 += "<div id='img-infirmier' class='col-xs-3 col-lg-3 col-sm-3'>";
-                p2 += "<img src='./image-person/" + infirmier.photo + "' style='width:60%;'/>";
-                p2 += "</div>";
-                p2 += "</div>";
-                p2 += "<div class='col-lg-8'>";
-                p2 += "<p><strong>Téléphone : </strong>" + infirmier.telI + "</p>";
-                p2 += "<p><strong>Email : </strong>" + infirmier.emailI + "</p>";
-                p2 += "<p><strong>Adresse : </strong>" + infirmier.rueI + " - " + infirmier.code_postalI + " - " + infirmier.villeI + "</p>";
-                p2 += "<p><strong>Type de soin : </strong> " + infirmier.type_soinI1 + " - " + infirmier.type_soinI2 + " - " + infirmier.type_soinI3 + " - " + infirmier.type_soinI4 + "</p>";
-                p2 += "<p><strong>Lieu d'intervention : " + infirmier.lieu_intervention + "</strong></p>";
-                p2 += "</div>";
-                p2 += "<div id='dmd_deja_envoyer' class='col-lg-12'>";
-                p2 += "<center>Demande dejà envoyer. </center>";
-                p2 += "</div>";
-                p2 += "</div>";
+//                var p2 = "<div class='col-lg-12 info'>";
+//                p2 += "<div class='row'>";
+//                p2 += "<div class='col-xs-6 col-lg-6 col-sm-6'><h4 id='nomInfirmier'>" + infirmier.prenomI + " " + infirmier.nomI + "</h4></center></div>";
+//                p2 += "<div id='img-infirmier' class='col-xs-3 col-lg-3 col-sm-3'>";
+//                p2 += "<img src='./image-person/" + infirmier.photo + "' style='width:60%;'/>";
+//                p2 += "</div>";
+//                p2 += "</div>";
+//                p2 += "<div class='col-lg-8'>";
+//                p2 += "<p><strong>Téléphone : </strong>" + infirmier.telI + "</p>";
+//                p2 += "<p><strong>Email : </strong>" + infirmier.emailI + "</p>";
+//                p2 += "<p><strong>Adresse : </strong>" + infirmier.rueI + " - " + infirmier.code_postalI + " - " + infirmier.villeI + "</p>";
+//                p2 += "<p><strong>Type de soin : </strong> " + infirmier.type_soinI1 + " - " + infirmier.type_soinI2 + " - " + infirmier.type_soinI3 + " - " + infirmier.type_soinI4 + "</p>";
+//                p2 += "<p><strong>Lieu d'intervention : " + infirmier.lieu_intervention + "</strong></p>";
+//                p2 += "</div>";
+//                p2 += "<div id='dmd_deja_envoyer' class='col-lg-12'>";
+//                p2 += "<center>Demande dejà envoyer. </center>";
+//                p2 += "</div>";
+//                p2 += "</div>";
 
-
-
-                <?php echo "var emailP = \"" . $_SESSION["email"] . "\";"; ?>
                 /*
                  var infoWindow = new google.maps.InfoWindow({
                  content: p
                  });*/
 
-
-
                 marqueur.addListener('click', function () {
                     // infoWindow.open(Smap, marqueur);
+
+                    var emailP = "<?php echo $_SESSION["email"]; ?>";
 
                     $.ajax({
                         url: 'lib-php/lib/savoir_demande.php?emailP=' + emailP + '&emailI=' + infirmier.emailI,
                         type: 'GET',
                         success: function (data) {
+
+                            document.getElementById("nomIprenom").innerHTML = infirmier.prenomI + " " + infirmier.nomI;
+                            document.getElementById("telI").innerHTML = infirmier.telI;
+                            document.getElementById("emailI").innerHTML = infirmier.emailI;
+                            document.getElementById("adresseI").innerHTML = infirmier.rueI + ", " + infirmier.code_postalI + ", " + infirmier.villeI;
+                            document.getElementById("typesoinI").innerHTML = infirmier.type_soinI1 + ", " + infirmier.type_soinI2 + ", " + infirmier.type_soinI3 + ", " + infirmier.type_soinI4;
+                            document.getElementById("lieuI").innerHTML = infirmier.lieu_intervention;
+                            $('#emailI1').attr('value', infirmier.emailI);
+                            document.images["imageI"].src = "./image-person/" + infirmier.photo + "";
+
+
+                            document.getElementById("nomIprenom1").innerHTML = infirmier.prenomI + " " + infirmier.nomI;
+                            document.getElementById("telI1").innerHTML = infirmier.telI;
+                            document.getElementById("emailI1").innerHTML = infirmier.emailI;
+                            document.getElementById("adresseI1").innerHTML = infirmier.rueI + ", " + infirmier.code_postalI + ", " + infirmier.villeI;
+                            document.images["imageI1"].src = "./image-person/" + infirmier.photo + "";
+                            document.getElementById("typesoinI1").innerHTML = infirmier.type_soinI1 + ", " + infirmier.type_soinI2 + ", " + infirmier.type_soinI3 + ", " + infirmier.type_soinI4;
+                            document.getElementById("lieuI1").innerHTML = infirmier.lieu_intervention;
+
+
                             if (data === "inexiste") {
-                                $('.modal-body-infirmier').html(p);
+
+//                                $('.modal-body-infirmier').html(p);
                                 $('#triggerwarningI').trigger('click');
 
                             } else if (data === "existe") {
-                                $('.modal-body-infirmier').html(p2);
-                                $('#triggerwarningI').trigger('click');
+//                                $('.modal-body').html("<center><h4>Vous avez déja envoyer une demande à " + infirmier.prenomI + " " + infirmier.nomI +"!</h4></center>");
+                                $('#triggerwarningI2').trigger('click');
                             } else {
                                 alert("Une erreur php dans savoir_demande.php");
                             }
@@ -631,37 +781,37 @@ if ((!isset($_SESSION['email'])) || (empty($_SESSION['email']))) {
             }
 
             function encode_utf8(s) {
-                 return unescape(encodeURIComponent(s));
+                return unescape(encodeURIComponent(s));
             }
 
             function decode_utf8(s) {
-                 return decodeURIComponent(escape(s));
+                return decodeURIComponent(escape(s));
             }
-            
-            $("#test").click(function(event) {
+
+            $("#test").click(function (event) {
 
             });
 
             var auto_refresh = setInterval(
-            function() 
-            {
-                var status = "lu";
-                var email = $('#emailP').val();
+                    function ()
+                    {
+                        var status = "lu";
+                        var email = $('#emailP').val();
 
-                $.ajax({
-                    url: "badges.php",
-                    type: "POST",
-                    data: "email="+email,
-                    success: function(server_response) 
-                    {  
-                        $('#badges').html(server_response);
-                    },
-                    error: function(server_response) 
-                    {  
-                      alert('Erreur :' + server_response);
-                    }
-                });
-            }, 1000);
+                        $.ajax({
+                            url: "badges.php",
+                            type: "POST",
+                            data: "email=" + email,
+                            success: function (server_response)
+                            {
+                                $('#badges').html(server_response);
+                            },
+                            error: function (server_response)
+                            {
+                                alert('Erreur :' + server_response);
+                            }
+                        });
+                    }, 1000);
 
 
         </script>
