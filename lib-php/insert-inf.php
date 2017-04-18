@@ -3,10 +3,7 @@
 session_start();
 
 
- 
-
 require_once 'cnx.php';
-
 
 $mdp = $_POST['mdpI'];
 $conf_mdp = $_POST['conf-mdpI'];
@@ -14,15 +11,15 @@ $nom = $_POST['nomI'];
 $prenom = $_POST['prenomI'];
 $email = $_POST['emailI'];
 $tel = $_POST['telI'];
-$rue = addcslashes($_POST['rueI'], "'");
+$rue = $_POST['rueI'];
 $code_postal = $_POST['code-postalI'];
-$ville = addcslashes($_POST['villeI'], "'");
+$ville = $_POST['villeI'];
 $latLng = $_POST['latLng'];
 $type_soin1 = htmlspecialchars($_POST['type-soin1']);
 $type_soin2 = htmlspecialchars($_POST['type-soin2']);
 $type_soin3 = htmlspecialchars($_POST['type-soin3']);
 $type_soin4 = htmlspecialchars($_POST['type-soin4']);
-$lieu_intervention = addcslashes($_POST['lieu-intervention'], "'");
+$lieu_intervention = $_POST['lieu-intervention'];
 
 
 $mdp = utf8_decode($mdp);
@@ -33,13 +30,14 @@ $email = utf8_decode($email);
 $tel = utf8_decode($tel);
 $rue = utf8_decode($rue);
 $code_postal = utf8_decode($code_postal);
-$ville = utf8_decode($ville);
+$ville = mysql_escape_string(utf8_decode($ville));
 $latLng = utf8_decode($latLng);
 $type_soin1 = utf8_decode($type_soin1);
 $type_soin2 = utf8_decode($type_soin2);
 $type_soin3 = utf8_decode($type_soin3);
 $type_soin4 = utf8_decode($type_soin4);
-$lieu_intervention = utf8_decode($lieu_intervention);
+$lieu_intervention = mysql_escape_string(utf8_decode($lieu_intervention));
+
 
 $dossier = '../image-person/';
 
@@ -138,6 +136,4 @@ if ($fichier == "") {
         echo $erreur;
     }
 }
-
-
 ?>  

@@ -613,7 +613,7 @@
                                                                     window.location.replace("carte.php");
                                                                 }
                                                                 else
-                                                                {
+                                                                {   
                                                                     $('#erreur_inscription').html('<p>' + server_response + '</p>');
                                                                     $('#triggerwarning').trigger('click');
                                                                     setTimeout(function () {
@@ -623,7 +623,7 @@
                                                             },
                                                             error: function (server_response)
                                                             {
-                                                                alert(server_response);
+                                                                alert(server_response.statusText);
                                                             }
                                                         });
                                                     });

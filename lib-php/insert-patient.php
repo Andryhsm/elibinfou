@@ -16,7 +16,7 @@ $ville = utf8_decode($_POST['villeP']);
 $code_acces = utf8_decode($_POST['code-acces']);
 $etage = utf8_decode($_POST['etage']);
 $info_sup = utf8_decode($_POST['info-sup']);
-$type_soin1 = utf8_decode(htmlspecialchars($_POST['type-soinP1']));
+$type_soin1 = utf8_decode($_POST['type-soinP1']);
 $type_soin2 = utf8_decode(htmlspecialchars($_POST['type-soinP2']));
 $type_soin3 = utf8_decode(htmlspecialchars($_POST['type-soinP3']));
 $type_soin4 = utf8_decode(htmlspecialchars($_POST['type-soinP4']));
@@ -24,10 +24,12 @@ $frequence_soin1 = utf8_decode($_POST['frequence-soin1']);
 $frequence_soin2 = utf8_decode($_POST['frequence-soin2']);
 $frequence_soin3 = utf8_decode($_POST['frequence-soin3']);
 $frequence_soin4 = utf8_decode($_POST['frequence-soin4']);
+
 //$heure1 = htmlspecialchars($_POST['heure1']);
 //$heure2 = htmlspecialchars($_POST['heure2']);
 //$heure3 = htmlspecialchars($_POST['heure3']);
 //$heure4 = htmlspecialchars($_POST['heure4']);
+
 
 $dossier = '../image-person/';
 
@@ -43,6 +45,7 @@ if ($fichier == "") {
 
     if (($isa == "0") && ($rep == "0")) {
         if ($mdp == $conf_mdp) {
+
             $patient = $val->fetch();
             $bdd->exec("INSERT INTO `oulib_patient` (`photo`,`nomP`,`prenomP`,`emailP`,`mdpP`,`telP`,`rueP`,`code-postalP`,`villeP`,`code-acces`,`etage`,`info-sup`,`type-soinP1`,`type-soinP2`,`type-soinP3`,`type-soinP4`,`frequence-soin1`,`frequence-soin2`,`frequence-soin3`,`frequence-soin4`) VALUES ('avatar_patient.png','$nom','$prenom','$email','$mdp','$tel','$rue','$code_postal','$ville','$code_acces','$etage','$info_sup','$type_soin1','$type_soin2','$type_soin3','$type_soin4','$frequence_soin1','$frequence_soin2','$frequence_soin3','$frequence_soin4')") or die(print_r($bdd->ErrorInfo()));
             $_SESSION['email'] = $email;
@@ -75,6 +78,7 @@ if ($fichier == "") {
         echo 'Email déjà employée';
     }
 } else {
+
     $taille_maxi = 1000000;
     $taille = filesize($_FILES['photo']['tmp_name']);
     $extensions = array('.png', '.gif', '.jpg', '.jpeg', '.PNG', '.JPG', '.JPEG', '.GIF');
@@ -90,9 +94,11 @@ if ($fichier == "") {
     if (!isset($erreur)) {
         $fichier = strtr($fichier, 'Ã€Ã�Ã‚ÃƒÃ„Ã…Ã‡ÃˆÃ‰ÃŠÃ‹ÃŒÃ�ÃŽÃ�Ã’Ã“Ã”Ã•Ã–Ã™ÃšÃ›ÃœÃ�Ã Ã¡Ã¢Ã£Ã¤Ã¥Ã§Ã¨Ã©ÃªÃ«Ã¬Ã­Ã®Ã¯Ã°Ã²Ã³Ã´ÃµÃ¶Ã¹ÃºÃ»Ã¼Ã½Ã¿', 'AAAAAACEEEEIIIIOOOOOUUUUYaaaaaaceeeeiiiioooooouuuuyy');
         $fichier = preg_replace('/([^.a-z0-9]+)/i', '-', $fichier);
+
+
         if (move_uploaded_file($_FILES['photo']['tmp_name'], $dossier . $fichier)) {
-            $reponse = $bdd->query("SELECT * FROM infirmiere WHERE emailI = '" . $email . "'");
-            $val = $bdd->query("SELECT * FROM patient WHERE emailP = '" . $email . "'");
+            $reponse = $bdd->query("SELECT * FROM oulib_infirmiere WHERE emailI = '" . $email . "'");
+            $val = $bdd->query("SELECT * FROM oulib_patient WHERE emailP = '" . $email . "'");
 
             $isa = $reponse->rowCount();
             $rep = $val->rowCount();
@@ -120,10 +126,6 @@ if ($fichier == "") {
                     $_SESSION['frequence-soin3'] = $frequence_soin3;
                     $_SESSION['frequence-soin4'] = $frequence_soin4;
                     $_SESSION['photo'] = $fichier;
-//                    $_SESSION['heure1'] = $heure1;
-//                    $_SESSION['heure2'] = $heure2;
-//                    $_SESSION['heure3'] = $heure3;
-//                    $_SESSION['heure4'] = $heure4;
                     echo 'succes';
                 } else
                     echo "Mot de passe non identique";
@@ -137,4 +139,5 @@ if ($fichier == "") {
         echo $erreur;
     }
 }
+
 ?>  
