@@ -1,19 +1,18 @@
 <?php
-
+	session_start();
+        
 	require "cnx.php";
 
-	session_start();
+	$emailI = ($_POST["emailI"]);
+	$date_soin1 = ($_POST["date_soin"]);
+	$heure_soin = ($_POST["heure_soin"]);
+	$commentaire = ($_POST["commentaire"]);
 
-
-	$emailI = urldecode($_GET["emailI"]);
-	$date_soin1 = urldecode($_GET["date_soin"]);
-	$heure_soin = urldecode($_GET["heure_soin"]);
-	$commentaire = urldecode($_GET["commentaire"]);
-
-	$date = explode("-", $date_soin1);
-
-	$date_soin = $date[2]."-".$date[1]."-". $date[0]."";
+//        echo $emailI;
 	
+        if ($date_soin1 == "" || $heure_soin == "" || $commentaire == ""){
+            echo 'errore';
+        }else{
 	$emailP = $_SESSION["email"];
 
 	$query = $bdd->query("SELECT * FROM oulib_liste_demande WHERE emailP=\"".$emailP."\" AND emailI=\"".$emailI."\"");
@@ -21,7 +20,6 @@
 
 	if($query->rowCount() == 0){
 
-			
 			$nomP = $_SESSION["nomP"];
 			$prenomP = $_SESSION["prenomP"];	
 			$telP = $_SESSION["telP"];
@@ -65,7 +63,7 @@
 				$frequenceSoinP = $frequenceSoin1. " - ". $frequenceSoin2 . " - ". $frequenceSoin3 ." - ". $frequenceSoin4;
 
 			$date = "heure";
-			$q = "INSERT INTO `oulib_liste_demande` (`photo`, `emailI`, `nomP`, `prenomP`, `telP`, `adresseP`, `typeSoinP`, `commentaire`, `frequenceSoin`, `status`, `emailP`, `date_soin`, `heure_soin`) VALUES('$photo', '$emailI', '$nomP', '$prenomP', '$telP' , '$adresse',  '$typeSoinP', '$commentaire', '$frequenceSoinP', '$status', '$emailP', '$date_soin', '$heure_soin')";
+			$q = "INSERT INTO `oulib_liste_demande` (`photo`, `emailI`, `nomP`, `prenomP`, `telP`, `adresseP`, `typeSoinP`, `commentaire`, `frequenceSoin`, `status`, `emailP`, `date_soin`, `heure_soin`) VALUES('$photo', '$emailI', '$nomP', '$prenomP', '$telP' , '$adresse',  '$typeSoinP', '$commentaire', '$frequenceSoinP', '$status', '$emailP', '$date_soin1', '$heure_soin')";
 
 			//echo $q;
 
@@ -74,5 +72,5 @@
 		echo "reussi";
 	}else{
 		echo "existe";
-	}
+        }}
 ?>

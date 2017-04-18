@@ -1,7 +1,7 @@
 <?php
 session_start();
 if ((!isset($_SESSION['email'])) || (empty($_SESSION['email']))) {
-    header("Location: ./login.html");
+    header("Location: ../login.html");
 }
 
 include_once "cnx.php";

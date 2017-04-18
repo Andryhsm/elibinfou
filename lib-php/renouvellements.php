@@ -1,6 +1,6 @@
 <?php
 	
-	require 'connexion.php';
+	require 'connexion_bdd.php';
 
 	// déclarations et instantiation des variables a envoyer recu par AJAX
 	$departement = utf8_decode($_POST['departement']);
